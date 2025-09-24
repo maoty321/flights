@@ -262,6 +262,9 @@ footer {
     left: 0%;
     width: 100%;
 }
+.oneway {
+    width: 90%;
+}
 @media (width > 580px) {
     .discover-body {
         grid-template-columns: repeat(2, 1fr);

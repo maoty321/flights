@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-body table-responsive" style="height: 60vh">
+    <table
+      id="selection-datatable"
+      class="table dt-responsive nowrap w-100 mb-0"
+    >
+      <thead>
+        <tr>
+          <th>Aircraft Model</th>
+          <th>Aircraft Registration</th>
+          <th>Depature</th>
+          <th>Arrival</th>
+          <th>Seat Capacity</th>
+          <!-- <th>Fares</th> -->
+          <th>Action</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% let a = 1; %>
+        <% if (flights || flights.lenght == 0) { %>
+              <% flights.forEach(flight => { %>
+                    <tr>
+                      <td><%- flight.aircraftId.model %></td>
+                      <td><%- flight.aircraftId.registration %></td>
+                      <td><%- flight.departure %></td>
+                      <td><%- flight.arrival %></td>
+                      <td><%- flight.aircraftId.seatingCapacity %></td>
+                      <!-- <td>
+                        <%- flight.fares > 0
+                          ? "<p class='badge bg-success'>Price Link</p>" 
+                          : "<a class='badge bg-primary p-1'>No Price yet</a>" 
+                        %>
+                      </td> -->
+
+                      <td>
+                        <a href="/flight/view/<%- flight.flight_number %>" class="btn text-primary"><i class="ri-eye-line"></i></a>
+                        <a href="" class="btn text-success"><i class="ri-edit-line"></i></a>
+                      </td>
+                      <td><a href="/flight/delete/<%- flight.flight_number %>" class="btn text-danger"><i class="ri-delete-bin-6-line"></i></a></td>
+                    </tr>
+              <% }) %>
+        <% } %>
+      </tbody>
+    </table>   
+  </div>
+  <!-- end card body-->
+</div>

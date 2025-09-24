@@ -1,0 +1,172 @@
+<style>
+    .top {
+        width: 80%;
+        color: white;
+        margin: auto;
+        padding-top: 80px;
+    }
+    .search-area {
+        background: linear-gradient(to left, blue, rgb(102, 44, 236));
+        width: 95%;
+        opacity: 0.7;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        color: white;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .btn-search {
+        background-color: white;
+        color: black;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+    a.btn-search {
+        color: black;
+    }
+    a.btn-search:hover {
+        border: 1px solid rgb(201, 198, 198);
+        background-color: white;
+        color: black;
+    }
+    .contA {
+        display: flex;
+        font-size: 15px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .airportName {
+        display: grid;
+        font-size: 11px;
+        text-align: center;
+    }
+    .airportName i {
+        font-weight: bolder;
+        font-size: 17px;
+    }
+    @media (width > 920px) {
+        .top {
+            padding-top: 30px;
+        }
+        .search-area {
+            width: 90%;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+        }   
+        .contA {
+            width: 60%;
+            justify-content: space-between;
+        }
+        .total_price {
+            width: 20%;
+            text-align: right;
+        }
+        .title {
+            padding-left: 55px;
+        }
+        .airportName {
+            font-size: 14px;
+        }
+    }
+</style>
+<div class="top"></div>
+
+<section class="search-area">
+    <div class="contA">
+        <div class="l">
+            <a href="" class="btn-search">Search Flight</a> 
+        </div>
+       <div class="airportName">
+            <p><%- departure %></p>
+            <i class="ri-arrow-down-line"></i>
+            <p><%- arrival %></p> <br>
+            <p><%- depatureDate %> | <%- adult %> Adult | <%- child %> child | <%- infact %> Infant</p>
+       </div>
+    </div>
+    <div class="total_price" style="display: flex; justify-content: space-between;">
+        <p style="color: white">Total Price  <sub>0 NGN</sub></p>  
+    </div>
+</section>
+
+<section class="ticket" id="cheapflight">
+    <div class="ticket-body">
+                     <h4 class="title" style="color: blue;">Flight Availabe</h4>
+        <% if (tickets || tickets.length > 0) { %>
+            <% tickets.forEach(ticket => { %>
+                 
+                    <% 
+                         const departure = new Date(ticket.departureTime);
+                            const arrival = new Date(ticket.arrivalTime);
+                            const durationMs = arrival - departure;
+
+                            const totalMinutes = Math.floor(durationMs / (1000 * 60));
+                            const hours = Math.floor(totalMinutes / 60);
+                            const minutes = totalMinutes % 60;
+
+                            const ddateOnly = departure.toISOString().split('T')[0];
+
+                            const dtimeOnly = departure.toTimeString().split(' ')[0].slice(0, 5);
+                            
+                            const adateOnly = arrival.toISOString().split('T')[0];
+
+                            const atimeOnly = arrival.toTimeString().split(' ')[0].slice(0, 5);
+                    %>
+                    <div class="oneway" id="oneway">
+                        <div class="ticket-card">
+                            <div class="card">
+                                <div class="from">
+                                    <p class="time"><%= dtimeOnly %></p>
+                                    <p title="<%= ticket.departure %>" style="cursor: pointer;"><%= ticket.departure.slice(0, 10) %>...</p>
+                                    <p><%- ddateOnly %></p>
+                                </div>
+                                <div class="di" style="text-align: center;">
+                                     <p> <%= hours %>hr <%= minutes %>min</p>
+                                    <p><---------------------></p>
+                                    <p>2 Stop Over</p>
+                                </div>
+                                <div class="to">
+                                    <p class="time"><%= atimeOnly %></p>
+                                    <p title="<%= ticket.arrival %>" style="cursor: pointer;"><%= ticket.arrival.slice(0, 10) %>...</p>
+                                    <p><%- adateOnly %></p>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <% 
+                                    const economyFare = ticket.fares.find(fare => fare.class === 'Economy');
+                                    const businessFare = ticket.fares.find(fare => fare.class === 'Business');
+                                    const firstFare = ticket.fares.find(fare => fare.class === 'First');
+                                %>
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Economy Class</b></p> <br>
+                                 <p><%= (economyFare && economyFare.available_seat > 0) ? `₦ ${economyFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <%-(economyFare && economyFare.available_seat > 0) ? 
+                                 `<a href="/siwesflight/book-ticket/${ticket.flight_number}/${economyFare.price}" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>` : '' %>
+                                </div>
+                           
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Business Class</b></p> <br>
+                                 <p><%= (businessFare && businessFare.available_seat > 0) ? `₦ ${businessFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                <%-(businessFare && businessFare.available_seat > 0) ? 
+                                 `<a href="/siwesflight/book-ticket/${ticket.flight_number}/${businessFare.price}" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>` : '' %>
+                                </div>
+                           
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>First Class</b></p> <br>
+                                <p><%= (firstFare && firstFare.available_seat > 0) ? `₦ ${firstFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <%-(firstFare && firstFare.available_seat > 0) ? 
+                                 `<a href="/siwesflight/book-ticket/${ticket.flight_number}/${firstFare.price}" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>` : '' %>
+                                </div>
+                           
+                        </div>  
+                    </div>
+        </div>  
+            <% }) %>
+              
+        <% } %>
+       
+</section>

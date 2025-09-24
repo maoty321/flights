@@ -1,0 +1,202 @@
+<section class="home" id="home">
+      <div class="con">
+            <p class="head-title">Explore Our <span style="color: blue"><b>Destinations</b></span></p>
+            <p class="head-desc" ><b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, explicabo distinctio!</b></p> <br>
+            <button class="btn">Book Now</button>
+      </div>
+    </section>
+
+    <% if (alertMsg) { %>
+     
+    <% } else { %>
+    <section class="book-ticket" id="book">
+        <div class="container">
+            <span><i class="ri-flight-takeoff-line"></i> Book flight</span>
+            <form action="/siwesflight" method="post">
+
+                <div class="col" style="display: flex;">
+                    <div class="mb-1" style="padding-right: 20px;">
+                        <input type="radio" name="one_way" id="one_way" checked readonly>
+                        <label for="one_way">One Way</label>
+                    </div>
+
+                    <!-- <div class="mb-1">
+                        <input type="radio" name="one_way" id="round_tip">
+                        <label for="round_tip">Round Trip</label>
+                    </div> -->
+                </div>
+
+                <div class="col-input">
+                    <div class="mb-3">
+                        <select name="departure" id="" required>
+                            <option value="">Departure Airport</option>
+                            <% airports.forEach(airport => { %>
+                                <option value="<%- airport.name %>"><%- airport.name %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select name="arrival" id="" required>
+                            <option value="">Arrival Airport</option>
+                             <% airports.forEach(airport => { %>
+                                <option value="<%- airport.name %>"><%- airport.name %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="date" name="depatureDate" id="" required>
+                    </div>
+                </div>
+                <div class="col-input">
+                    <div class="mb-3">
+                        <select name="adult" id="" required>
+                            <option value="1">1 Adult(12 yrs+)</option>
+                            <option value="2">2 Adult(12 yrs+)</option>
+                            <option value="3">3 Adult(12 yrs+)</option>
+                            <option value="4">4 Adult(12 yrs+)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select name="child" id="">
+                            <option value="0" >0 Child</option>
+                            <option value="1">1 Child</option>
+                            <option value="2">2 Child</option>
+                            <option value="3">3 Child</option>
+                            <option value="4">4 Child</option>
+                            <option value="5">5 Child</option>
+                            <option value="6">6 Child</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select name="infact" id="" required>
+                            <option value="0">0 Infact (< 2 years)</option>
+                            <option value="1">1 Infact (< 2 years)</option>
+                            <option value="2">1 Infact (< 2 years)</option>
+                            <option value="3">3 Infact (< 2 years)</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="submit" value="Search Flights">
+            </form>
+        </div>
+    </section>
+    
+    <section class="discover" id="destionation">
+        <div class="discover-header">
+            <h4 class="head-title">Popular Destination</h4>
+            <p>Discover the  most Loved Destination Arround the Globe</p>
+        </div>
+        <div class="discover-body">
+            <div class="card">
+                <div class="card-img">
+                    <img src="/./img/priscilla-du-preez-KoF1cXdF9Ws-unsplash.jpg" alt="">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Tradition and Futurism</h4>
+                    <p>New York City, USA</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/./img/il-vagabiondo-8eNt0CQamB0-unsplash.jpg" alt="">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Tradition and Futurism</h4>
+                    <p>New York City, USA</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/./img/ammie-ngo-vcu-OZBxxRk-unsplash.jpg" alt="">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Tradition and Futurism</h4>
+                    <p>New York City, USA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="ticket" id="cheapflight">
+        <div class="ticket-header">
+            <h4 class="head-title">Find cheap flights</h4>
+            <p> you can take your next adventure to anywhere without breaking the bank.
+                 Choose between one-way and return tickets.</p>
+        </div>
+        <div class="ticket-body">
+                     <div class="ticket-chose">
+                        <button class="active" id="onewayBtn">One Way</button>
+                        <button class="" id="roundtipBtn">Round Tip</button>
+                </div>
+        <% if (tickets || tickets.length > 0) { %>
+            <% tickets.forEach(ticket => { %>
+                    <% 
+                         const departure = new Date(ticket.departureTime);
+                            const arrival = new Date(ticket.arrivalTime);
+                            const durationMs = arrival - departure;
+
+                            const totalMinutes = Math.floor(durationMs / (1000 * 60));
+                            const hours = Math.floor(totalMinutes / 60);
+                            const minutes = totalMinutes % 60;
+
+                            const ddateOnly = departure.toISOString().split('T')[0];
+
+                            const dtimeOnly = departure.toTimeString().split(' ')[0].slice(0, 5);
+                            
+                            const adateOnly = arrival.toISOString().split('T')[0];
+
+                            const atimeOnly = arrival.toTimeString().split(' ')[0].slice(0, 5);
+                    %>
+                    <div class="oneway" id="oneway">
+                        <div class="ticket-card">
+                            <div class="card">
+                                <div class="from">
+                                    <p class="time"><%= dtimeOnly %></p>
+                                    <p title="<%= ticket.departure %>" style="cursor: pointer;"><%= ticket.departure.slice(0, 10) %>...</p>
+                                    <p><%- ddateOnly %></p>
+                                </div>
+                                <div class="di" style="text-align: center;">
+                                     <p> <%= hours %>hr <%= minutes %>min</p>
+                                    <p><---------------------></p>
+                                    <p>2 Stop Over</p>
+                                </div>
+                                <div class="to">
+                                    <p class="time"><%= atimeOnly %></p>
+                                    <p title="<%= ticket.arrival %>" style="cursor: pointer;"><%= ticket.arrival.slice(0, 10) %>...</p>
+                                    <p><%- adateOnly %></p>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <% 
+                                    const economyFare = ticket.fares.find(fare => fare.class === 'Economy');
+                                    const businessFare = ticket.fares.find(fare => fare.class === 'Business');
+                                    const firstFare = ticket.fares.find(fare => fare.class === 'First');
+                                %>
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Economy Class</b></p> <br>
+                                 <p><%= (economyFare && economyFare.available_seat > 0) ? `₦ ${economyFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <a href="" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>
+                                </div>
+                           
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Economy Class</b></p> <br>
+                                 <p><%= (businessFare && businessFare.available_seat > 0) ? `₦ ${businessFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <a href="" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>
+                                </div>
+                           
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Economy Class</b></p> <br>
+                                <p><%= (firstFare && firstFare.available_seat > 0) ? `₦ ${firstFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <a href="" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>
+                                </div>
+                           
+                        </div>  
+                    </div>
+        </div>  
+            <% }) %>
+              
+        <% } %>
+       
+    </section>
+
+<% } %>

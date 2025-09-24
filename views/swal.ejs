@@ -1,0 +1,12 @@
+<% if (alertMsg) { %>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    Swal.fire({
+      title: "<%= title %>",
+      text: "<%= msgAlert %>",
+      icon: "<%= icon %>",
+    }).then(() => {
+      location.replace('<%= location %>');
+    });
+  </script>
+<% } %>

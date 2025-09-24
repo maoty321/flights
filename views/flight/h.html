@@ -1,0 +1,76 @@
+<section class="ticket" id="cheapflight">
+        <% if (tickets || tickets.length > 0) { %>
+            <% tickets.forEach(ticket => { %>
+                <div class="ticket-header">
+                    <h4 class="head-title" style="color: blue;">Flight Availabe</h4>
+                    <p>Flight from <%= ticket.departure %> to <%- ticket.arrival  %> </p>
+                </div>
+                 <div class="ticket-body">
+                    <% 
+                         const departure = new Date(ticket.departureTime);
+                            const arrival = new Date(ticket.arrivalTime);
+                            const durationMs = arrival - departure;
+
+                            const totalMinutes = Math.floor(durationMs / (1000 * 60));
+                            const hours = Math.floor(totalMinutes / 60);
+                            const minutes = totalMinutes % 60;
+
+                            const ddateOnly = departure.toISOString().split('T')[0];
+
+                            const dtimeOnly = departure.toTimeString().split(' ')[0].slice(0, 5);
+                            
+                            const adateOnly = arrival.toISOString().split('T')[0];
+
+                            const atimeOnly = arrival.toTimeString().split(' ')[0].slice(0, 5);
+                    %>
+                    <div class="oneway" id="oneway">
+                        <div class="ticket-card">
+                            <div class="card">
+                                <div class="from">
+                                    <p class="time"><%= dtimeOnly %></p>
+                                    <p title="<%= ticket.departure %>" style="cursor: pointer;"><%= ticket.departure.slice(0, 10) %>...</p>
+                                    <p><%- ddateOnly %></p>
+                                </div>
+                                <div class="di" style="text-align: center;">
+                                     <p> <%= hours %>hr <%= minutes %>min</p>
+                                    <p><---------------------></p>
+                                    <p>2 Stop Over</p>
+                                </div>
+                                <div class="to">
+                                    <p class="time"><%= atimeOnly %></p>
+                                    <p title="<%= ticket.arrival %>" style="cursor: pointer;"><%= ticket.arrival.slice(0, 10) %>...</p>
+                                    <p><%- adateOnly %></p>
+                                </div>
+                            </div>
+                            <div class="card-price">
+                                <% 
+                                    const economyFare = ticket.fares.find(fare => fare.class === 'Economy');
+                                    const businessFare = ticket.fares.find(fare => fare.class === 'Business');
+                                    const firstFare = ticket.fares.find(fare => fare.class === 'First');
+                                %>
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Economy Class</b></p> <br>
+                                 <p><%= (economyFare && economyFare.available_seat > 0) ? `₦ ${economyFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <a href="" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>
+                                </div>
+                           
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Economy Class</b></p> <br>
+                                 <p><%= (businessFare && businessFare.available_seat > 0) ? `₦ ${businessFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <a href="" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>
+                                </div>
+                           
+                                <div class="price" id="show">
+                                 <p style="color: blue;"><b>Economy Class</b></p> <br>
+                                <p><%= (firstFare && firstFare.available_seat > 0) ? `₦ ${firstFare.price.toLocaleString()}` : 'No Seat' %></p> <br>
+                                 <a href="" style="background-color: blue; padding: 10px; border-radius: 10px; color: white;">Book Now</a>
+                                </div>
+                           
+                        </div>  
+                    </div>
+        </div>  
+            <% }) %>
+              
+        <% } %>
+       
+</section>

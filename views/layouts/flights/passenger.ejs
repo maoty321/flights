@@ -1,0 +1,185 @@
+<style>
+    .top {
+        width: 80%;
+        color: white;
+        margin: auto;
+        padding-top: 120px;
+    }
+    .data-fill {
+        width: 90%;
+        border-radius: 20px;
+        margin: auto;
+        padding: 20px;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+    }
+    .passager-details {
+        padding: 10px;
+        margin-top: 20px;
+    }
+    .passager-details p {
+        font-size: 17px;
+        padding-bottom: 10px;
+        font-weight: bold;
+        font-family: sans-serif, "POPPIN";
+    }
+    .row {
+        display: grid;
+        gap: 1rem;
+    }
+    .mb-3 {
+        display: grid;
+    }
+    .mb-3 label {
+        font-size: 15px;
+        padding-left: 5px;
+        color: rgb(54, 52, 52);
+    }
+    .mb-3 .control-form {
+        outline: none;
+        border: 1px solid rgb(221, 218, 218);
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 15px;
+        color: rgb(54, 52, 52);
+    }
+    @media (width > 920px) {
+        .top {
+            padding-top: 30px;
+        }
+
+        .row {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .mb-3 {
+            width: 100%;
+        }
+        .data-fill h5 {
+            font-size: 20px;
+        }
+    }
+</style>
+<% if (alertMsg) { %>
+     
+    <% } else { %>
+
+<section class="top">
+
+</section>
+<section class="data-fill">
+    <h5>Fill out the Passager`s Details</h5> <br>
+    <div class="passager-details">
+
+        <form action="/siwesflight/book-ticket" method="post">
+        
+            
+        <% for( let index = 0; index < adult; index++ ) { %>
+            <h6 style="padding-bottom: 10px;">Adult details <%- index+1 %></h6>
+            <div class="row">
+            <div class="mb-3">
+                <label for="">Full Name</label>
+                <input type="text" name="fullname[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Gender</label>
+                <select name="gender[]" id="" class="control-form" required>
+                    <option value="">None</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="">Date of Birth</label>
+                <input type="date" name="dob[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Email</label>
+                <input type="text" name="email[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Phone Number</label>
+                <input type="text" name="pnumber[]" class="control-form" id="" required>
+            </div>
+        </div>
+        <% } %>
+        
+    </div>
+
+   
+    <% if (child !== '0') { %>
+        <div class="passager-details">
+            <% for( let index = 0; index < child; index++ ) { %>
+            <h6 style="padding-bottom: 10px;">Child <%- index+1 %></h6>
+                <div class="row">
+            <div class="mb-3">
+                <label for="">Full Name</label>
+                <input type="text" name="fullname[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Gender</label>
+                <select name="gender[]" id="" class="control-form" required>
+                    <option value="">None</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="">Date of Birth</label>
+                <input type="date" name="dob[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Email</label>
+                <input type="text" name="email[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Phone Number</label>
+                <input type="text" name="pnumber[]" class="control-form" id="" required>
+            </div>
+            </div>
+            <% } %>
+        
+         </div>
+    <% } %>
+
+    
+    <% if (infact !== '0') { %>
+        <div class="passager-details">
+        <% for( let index = 0; index < infact; index++ ) { %>
+            <h6 style="padding-bottom: 10px;">infact Details <%- index+1 %></h6>
+
+            <div class="row">
+            <div class="mb-3">
+                <label for="">Full Name</label>
+                <input type="text" name="fullname[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Gender</label>
+                <select name="gender[]" id="" class="control-form" required>
+                    <option value="">None</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="">Date of Birth</label>
+                <input type="date" name="dob[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Email</label>
+                <input type="text" name="email[]" class="control-form" id="" required>
+            </div>
+            <div class="mb-3">
+                <label for="">Phone Number</label>
+                <input type="text" name="pnumber[]" class="control-form" id="" required>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+
+    
+    <div class="mb-3">
+        <input type="submit" value="Continue" class="btn form-control">
+    </div>
+</form>
+</section>
+<% } %>

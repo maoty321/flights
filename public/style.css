@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --primary-color: rgb(38, 38, 241);
+    --text-color: rgb(53, 52, 52);
+    --second-text-color: white;
+    --header-font: "Bebas Neue", sans-serif;
+}
+body {
+    font-family: "Poppins", sans-serif;
+}
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+img {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    transition: 0.1 ease;
+}
+nav {
+    position: fixed;
+    isolation: isolate;
+    width: 100%;
+    z-index: 9;
+}
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    text-align: center;
+}
+.nav-logo {
+    font-size: 25px;
+    font-family: var(--header-font);
+}
+.nav-logo a {
+    text-decoration: none;
+    color: var(--second-text-color);
+}
+.div-menu-btn {
+    font-size: 25px;
+    cursor: pointer;
+    color: var(--second-text-color);
+}
+.nav-links {
+    position: absolute;
+    top: 64px;
+    width: 100%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 20px 0px;
+    transform: translateY(-100%);
+    z-index: -1;
+    transition: 0.7s;
+    background-color: var(--primary-color);
+}
+.open {
+    transform: translateY(0);
+}
+.nav-links a {
+    color: white;
+}
+.nav-links a:hover {
+    color: var(--text-dark);
+}
+.nav-btns {
+    display: none;
+}
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 120vh;
+    padding-top: 70px;
+    background: linear-gradient(rgba(0, 50, 100, 0.2), rgba(0, 50, 100, 0.2)), url('img/home.jpg');
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* border-bottom-right-radius: 10%; */
+    /* border-bottom-left-radius: 30%; */
+    color: rgb(241, 238, 238);
+    gap: .5rem;
+}
+.con {
+    padding-top: 40px;
+    width: 100%;
+}
+.head-title {
+    font-size: 35px;
+}
+.head-desc {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+.btn {
+    border: none;
+    outline: none;
+    padding: 20px;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    border-radius: 10px;
+}
+.book-ticket {
+    width: 100%;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+.book-ticket .container {
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    padding-bottom: 90px;
+    background-color: white;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, .1);
+    margin-bottom: 20px;
+}
+.book-ticket .container span {
+    color: var(--primary-color);
+}
+.book-ticket .container .col {
+    display: flex;
+    padding: 20px;
+}
+
+.mb-3 {
+    padding: 5px 0px;
+}
+.col-input input, select {
+    width: 100%;
+    height: 3rem;
+    padding: 10px;
+    background-color: #f6f8fa;
+    border: none;
+    outline: none;
+}
+input[type = 'submit'] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    width: 100%;
+    outline: none;
+    border: none;
+    margin-bottom: 10px;
+}
+.discover {
+    padding: 20px;
+}
+
+.discover-header p {
+    font-size: 15px;
+}
+.discover-body {
+    display: grid;
+}
+.discover-body .card {
+    width: 100%;
+    margin-top: 20px;
+}
+/* .discover .card .card-img {
+    width: 100%;
+} */
+.discover .card .card-img img {
+    border-radius: 1.5rem;
+    height: 30vh;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, .2);
+}
+.discover .card .card-body {
+    padding: 1rem;
+}
+.discover .card .card-body h4 {
+    color: var(--primary-color);
+}
+.discover .card .card-body p {
+    font-size: 14px;
+}
+.ticket {
+    padding: 20px;
+}
+.ticket p {
+    font-size: 13px;
+}
+.ticket-body {
+    margin-top: 30px;
+}
+.ticket-chose {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, .2);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ticket-chose button {
+    padding: 10px;
+    width: 50%; 
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.ticket-chose button.active {
+    background-color: var(--primary-color);
+    color: var(--second-text-color);
+}
+.ticket-card {
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+}
+.ticket-card .card {
+    border: 1px solid rgb(219, 216, 216);
+    padding: 10px;
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ticket-card .card .time {
+    font-size: 20px;
+    font-weight: bold;
+}
+.card-price {
+    width: 93%;
+    border: 1px solid rgb(219, 216, 216);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    text-align: center;
+}
+.price {
+
+    width: 33.3%;
+    padding: 30px;
+    border: 1px solid rgb(219, 216, 216);
+    border-top: 0px;
+}
+
+footer {
+    text-align: center;
+    color: rgb(151, 148, 148);
+    margin-top: 50px;
+    border-top: 1px solid rgb(151, 148, 148);
+    padding: 20px;
+    /* position: absolute; */
+    bottom: 0;
+    left: 0%;
+    width: 100%;
+}
+@media (width > 580px) {
+    .discover-body {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .discover-body .card {
+        padding: 5px;
+    }
+}
+
+@media (width > 920px) {
+        .mobile {
+            display: none;
+        }
+        nav {
+        position: static;
+        /* padding-block: 2rem; */
+        padding: 2rem 4rem;
+        max-width: var(--max-width);
+        display: flex; 
+        margin-inline: auto;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .nav-header {
+        flex: 1;
+        padding: 0%;
+        background-color: transparent;
+    }
+    .nav-logo a {
+        color: var(--text-dark)
+    }
+    .nav-logo a span {
+        color: var(--primary-color);
+    }
+    .nav-links {
+        z-index: 1;
+        position: static;
+        transform: none;
+        background-color: transparent;
+        border-bottom: 4px solid transparent;
+        flex-direction: row;
+    }
+    .nav-links a {
+        color: var(--text-dark);
+    }
+
+    .nav-links a:hover {
+        border-bottom: 1px solid var(--primary-color);
+    }
+
+    .nav-btns {
+        display: flex;
+        flex: 1;
+    }
+
+    .nav-btns .btn {
+        padding: 0.75rem 1.5rem;
+        outline: none;
+        border: 0;
+        white-space: nowrap;
+        font-size: 1rem;
+        border-radius: 10px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    .sign-up {
+        margin: 5px;
+        color: var(--text-dark);
+        background-color: transparent;
+    }
+    .sign-in {
+        color: var(--second-text-color);
+        margin: 5px;
+        background-color: var(--primary-color);
+    }
+    .sign-up:hover {
+        color: var(--primary-color);
+    }
+    .home {
+        display: block;
+        text-align: left;
+        padding-left: 20px;
+        background-position: center;
+        padding-top: 5rem;
+        height: 75vh;
+    }
+    .home .con {
+        width: 40%;
+    }
+    .col-input {
+    width: 100%;
+    display: flex;
+}
+    .mb-3 {
+        width: 50%;
+        padding: 10px;
+    }
+    .book-ticket .container {
+        width: 70%;
+        position: absolute;
+        top: 85%;
+        left: 15%;
+        padding-bottom: 5px;
+    }
+    .discover {
+        position: relative;
+        margin-top: 14%;
+    }
+     .discover-body {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .discover-body .card {
+        padding: 10px;
+    }
+    .ticket-chose {
+        width: 90%;
+        margin: auto;
+    }
+
+    .ticket-card {
+        grid-template-columns: repeat(2, 1fr);
+        
+    }
+    .ticket .card {
+        width: auto;
+    }
+    .oneway, .roundtip {
+        width: 90%;
+        margin: auto;
+    }
+    .card-price {
+        width: auto;
+    }
+    .ticket-card .price {
+        border-bottom: none;
+    }
+}

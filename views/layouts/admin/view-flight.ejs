@@ -1,0 +1,102 @@
+<div class="col-md-11 col-sm-12 m-auto">
+    <div class="card shadow-lg">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <strong class="text-primary">Flight Number : <%- flight.flight_number %></strong>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Fares
+            </button>
+        </div>
+         <div class="card-body">
+            <div class="row">
+                <!-- <%- JSON.stringify(fares, null, 2) %> -->
+                   <div class="col-md-6"> 
+                    <p><strong>Aircraft Name & Registration:</strong> <%= flight.aircraftId.model + ', ' + flight.aircraftId.registration || 'N/A' %></p>
+                    <p><strong>Departure:</strong> <%= flight.departure %></p>
+                    <p><strong>Arrival:</strong> <%= flight.arrival %></p>
+                    <p><strong>Departure Time:</strong> <%=  flight.departureTime %></p>
+                    <p><strong>Arrival Time:</strong> <%=  flight.arrivalTime %></p>
+                </div>
+
+                <div class="col-md-6">
+                <p><strong>Status:</strong> <%= flight.status || 'Scheduled' %></p>
+                    <p><strong>Fares:</strong></p>
+                    <table class="table table-sm table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                        <th>Class</th>
+                        <th>Seat Total</th>
+                        <th>Price (₦)</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (fares && fares.length > 0) { %>
+                        <% fares.forEach(fare => { %>
+                            <tr>
+                            <td><%= fare.class %></td>
+                            <td><%= fare.seat_total %></td>
+                            <td><%= fare.price %></td>
+                             <td>
+                                <a href="" class="btn text-primary"><i class="ri-edit-line"></i></a>
+                                <a href="/flight/delete/<%- flight.flight_number %>" class="btn text-danger"><i class="ri-delete-bin-6-line"></i></a></td>
+                            </td> 
+                                
+                            </tr>
+                        <% }) %>
+                        <% } else { %>
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">No fares added yet.</td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                    </table>
+
+                </div>
+            </div>
+            
+
+            <a href="/flight/delete/<%= flight._id %>" class="btn btn-danger"
+            onclick="return confirm('Are you sure you want to delete this flight?');">
+            Delete
+            </a>
+            <a href="/flight/manage-flight" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Fares</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/flight/<%- flight.flight_number %>/fares" method="post">
+            <div class="mb-3">
+                <select name="fareClass" id="" class="form-control" required>
+                    <option value="">Select fare Class</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="First">First</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <input type="number" name="seat_total" placeholder="Seat Number" id="" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="number" name="price" placeholder="Price(₦)" id="" class="form-control" required>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

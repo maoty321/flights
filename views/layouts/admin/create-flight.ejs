@@ -1,0 +1,68 @@
+<div class="card-body bg-white p-3">
+  <form action="/flight" method="post">
+  <div class="row">
+    <div class="col-md-4 col-sm-12">
+      <div class="mb-3">
+        <label for="">Aircraft Registration</label>
+        <select name="aircraftId" id="" class="form-control" required>
+            <option value="">None</option>
+            <% if (aircrafts || aircrafts.length == 0) { %>
+                <% aircrafts.forEach(aircraft => { %>
+                    <option value="<%- aircraft._id %>"><%- aircraft.registration %></option>
+                <% }) %>
+            <% } %>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <div class="mb-3">
+        <label for="">Departure</label>
+        <select name="departure" id="" class="form-control" required>
+            <option value="">Departure</option>
+            <% if (airports || airports.length == 0) { %>
+                <% airports.forEach(airport => { %>
+                    <option value="<%- airport.name %>"><%- airport.name %></option>
+                <% }) %>
+            <% } %>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <div class="mb-3">
+        <label for="">Arrival</label>
+        <select name="arrival" id="" class="form-control" required>
+            <option value="">Arrival</option>
+            <% if (airports || airports.length == 0) { %>
+                <% airports.forEach(airport => { %>
+                    <option value="<%- airport.name %>"><%- airport.name %></option>
+                <% }) %>
+            <% } %>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-4 col-sm-12">
+      <div class="mb-3">
+        <label for="">Departure Time</label>
+        <input type="datetime-local" name="departureTime" id="" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+       <div class="mb-3">
+        <label for="">Arrival Time</label>
+        <input type="datetime-local" name="arrivalTime" id="" class="form-control" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input type="submit" value="Create Flight" class="btn btn-primary" />
+  </div>
+  </form>
+</div>

@@ -13,7 +13,7 @@ exports.payment = async(req, res) => {
     const price = req.session.price
     const response = await axios.post('https://api.paystack.co/transaction/initialize', {
       email: passenger.email[0],
-      callback_url:  "http://localhost:5000/siwesflight/verify-payment",
+      callback_url:  "https://siwesflight-ll5w.onrender.com/verify-payment",
       amount: amount * 100,
       metadata: {
         passenger: passenger,

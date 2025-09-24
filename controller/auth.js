@@ -43,8 +43,8 @@ exports.register = async(req, res) => {
 
     res.status(201).render('auth/register', {
         alertMsg: true,
-        location: '/admin/register/',
-        icon: 'sucess',
+        location: '/admin/login/',
+        icon: 'success',
         title: 'Register an account',
         msgAlert: 'Successful create an account'
     })

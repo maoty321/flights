@@ -13,7 +13,7 @@ flightRouter.get("/dashboard", authUser, dashboard)
 flightRouter.get("/", authUser, get_create_flight)
 flightRouter.post("/", authUser, createFlight)
 flightRouter.get("/manage-flight", authUser, getFlights)
-flightRouter.get("/book-ticket", authUser, get_bookedtickets)
+flightRouter.get("/ticket", authUser, get_bookedtickets)
 
 
 flightRouter.get("/view/:id", authUser, getFlight)

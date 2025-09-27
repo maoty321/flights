@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - View Booked Ticket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f8f9fa; }
+    .card-header { background: #0d6efd; color: #fff; }
+    .label { font-size: 0.85rem; color: #6c757d; }
+    .value { font-weight: 600; }
+    .divider { border-top: 1px dashed #dee2e6; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">📋 Admin: Booked Ticket Details</h5>
+        <a href="/flight/book-ticket" class="btn btn-light">BACK</a>
+      </div>
+      <div class="card-body">
+        
+        <!-- Ticket info -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="label">Booking ID</div>
+            <div class="value"><%= get_bookedticket._id %></div>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="label">Reference</div>
+            <div class="value"><%= get_bookedticket.flight.reference %></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Flight info -->
+        <h6 class="fw-bold">Flight Info</h6>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="label">Flight Number</div>
+            <div class="value"><%= flight.flight_number %></div>
+          </div>
+          <div class="col-md-6">
+            <div class="label">Aircraft ID</div>
+            <div class="value"><%= flight.aircraftId %></div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="label">Departure</div>
+            <div class="value"><%= flight.departure %></div>
+            <div class="label">Time</div>
+            <div class="value"><%= new Date(flight.departureTime).toLocaleString() %></div>
+          </div>
+          <div class="col-md-6">
+            <div class="label">Arrival</div>
+            <div class="value"><%= flight.arrival %></div>
+            <div class="label">Time</div>
+            <div class="value"><%= new Date(flight.arrivalTime).toLocaleString() %></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Passenger info -->
+        <h6 class="fw-bold">Passenger Info</h6>
+        <% get_bookedticket.passenger.forEach((p, idx) => { %>
+          <div class="mb-3 p-3 border rounded bg-light">
+            <h6 class="fw-semibold">Passenger <%= idx + 1 %></h6>
+
+            <!-- Loop through fullname array -->
+            <div class="mb-2">
+              <div class="label">Full Names</div>
+              <ul class="mb-0">
+                <% p.fullname.forEach(name => { %>
+                  <li class="value"><%= name %></li>
+                <% }) %>
+              </ul>
+            </div>
+
+            <!-- Loop through gender array -->
+            <div class="mb-2">
+              <div class="label">Genders</div>
+              <ul class="mb-0">
+                <% p.gender.forEach(g => { %>
+                  <li class="value"><%= g %></li>
+                <% }) %>
+              </ul>
+            </div>
+
+            <!-- Loop through dob array -->
+            <div class="mb-2">
+              <div class="label">Date of Birth</div>
+              <ul class="mb-0">
+                <% p.dob.forEach(d => { %>
+                  <li class="value"><%= d %></li>
+                <% }) %>
+              </ul>
+            </div>
+
+            <!-- Loop through phone numbers -->
+            <div class="mb-2">
+              <div class="label">Phone Numbers</div>
+              <ul class="mb-0">
+                <% p.pnumber.forEach(num => { %>
+                  <li class="value"><%= num %></li>
+                <% }) %>
+              </ul>
+            </div>
+
+            <!-- Loop through emails -->
+            <div class="mb-2">
+              <div class="label">Emails</div>
+              <ul class="mb-0">
+                <% p.email.forEach(mail => { %>
+                  <li class="value"><%= mail %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+        <% }) %>
+
+        <div class="divider"></div>
+
+        <!-- Summary -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="label">Adults</div>
+            <div class="value"><%= get_bookedticket.adult %></div>
+          </div>
+          <div class="col-md-4">
+            <div class="label">Children</div>
+            <div class="value"><%= get_bookedticket.child %></div>
+          </div>
+          <div class="col-md-4">
+            <div class="label">Infants</div>
+            <div class="value"><%= get_bookedticket.infact %></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Price -->
+        <div class="d-flex justify-content-between align-items-center">
+          <h5>Total Price</h5>
+          <h5 class="text-success">₦<%= get_bookedticket.flight.price %></h5>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

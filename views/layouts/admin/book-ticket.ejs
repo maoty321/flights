@@ -13,12 +13,11 @@
           <th>Arrival</th>
           <!-- <th>Fares</th> -->
           <th>Action</th>
-          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
          <% let a = 1; %>
-        <% if (tickets || tickets.lenght == 0) { %>
+          <% if (tickets || tickets.lenght == 0) { %>
               <% tickets.forEach(book_ticket => { %>
                    <tr>
                         <td><%- book_ticket.booking.flight.reference %></td>
@@ -27,9 +26,8 @@
                         <td><%- book_ticket.flights.departure %></td>
                         <td><%- book_ticket.flights.arrival %></td>
                          <td>
-                        <a href="" class="btn text-primary"><i class="ri-eye-line"></i></a>
+                        <a href="/flight/ticket/<%- book_ticket.booking.flight.reference %>" class="btn text-primary"><i class="ri-eye-line"></i></a>
                       </td>
-                      <td><a href="" class="btn text-danger"><i class="ri-delete-bin-6-line"></i></a></td>
                     </tr>
                    </tr>
               <% }) %>

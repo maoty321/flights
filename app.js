@@ -46,6 +46,8 @@ app.use('/siwesflight', frontendRouter)
 app.use('/admin', authRouter);
 
 //routeMiddleware
+
+
 app.use(notFound);
 app.use(errorHandlerMiddleware);
 

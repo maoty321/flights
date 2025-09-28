@@ -16,13 +16,14 @@
         </tr>
       </thead>
       <tbody>
+      
          <% let a = 1; %>
           <% if (tickets || tickets.lenght == 0) { %>
               <% tickets.forEach(book_ticket => { %>
                    <tr>
                         <td><%- book_ticket.booking.flight.reference %></td>
                         <td><%- book_ticket.booking.flight.flight_number %></td>
-                        <td>3</td>
+                        <td><%- book_ticket.booking.adult + book_ticket.booking.child + book_ticket.booking.infact %></td>
                         <td><%- book_ticket.flights.departure %></td>
                         <td><%- book_ticket.flights.arrival %></td>
                          <td>
